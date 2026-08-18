@@ -2193,36 +2193,6 @@ section::before {
 }
 
 @media (max-width: 480px) {
-  .nav-container {
-    gap: 0.5rem;
-    padding: 0.7rem 0.8rem;
-  }
-
-  .nav-logo {
-    font-size: 1.4rem;
-  }
-
-  .logo-dot {
-    font-size: 1.6rem;
-  }
-
-  .nav-actions {
-    gap: 0.4rem;
-  }
-
-  .nav-resume-btn {
-    padding: 0.5rem 0.8rem;
-  }
-
-  .nav-resume-btn span {
-    display: none;
-  }
-
-  .nav-cta {
-    font-size: 0.75rem;
-    padding: 0.5rem 1rem;
-  }
-
   .contact-grid {
     gap: 2rem;
   }
@@ -2848,47 +2818,6 @@ section::before {
 }
 
 @media (max-width: 480px) {
-  .nav-container {
-    gap: 0.8rem;
-  }
-
-  .nav-actions {
-    width: 100%;
-  }
-
-  .hero-name {
-    font-size: clamp(2rem, 5vw, 2.7rem);
-    line-height: 1.2;
-  }
-
-  .hero-role {
-    font-size: clamp(1.1rem, 2vw, 1.55rem);
-    min-height: 46px;
-  }
-
-  .hero-description {
-    font-size: 0.95rem;
-    line-height: 1.6;
-  }
-
-  .hero-greeting {
-    font-size: 0.9rem;
-  }
-
-  .section-title {
-    font-size: 1.75rem;
-  }
-
-  .nav-cta {
-    width: 100%;
-    padding: 0.85rem 1.1rem;
-    font-size: 0.88rem;
-  }
-
-  .hero-content {
-    padding: 2rem 5% 3rem;
-  }
-
   .contact-cta-box {
     padding: 2rem;
   }
@@ -5841,15 +5770,13 @@ section::before {
     font-size: 1.375rem;
   }
 
-  .nav-resume-btn span,
-  .nav-cta span {
-    display: none;
-  }
-
+  /* Resume/Hire buttons have no icon-only fallback (text-only labels), so
+     hiding just the <span> leaves an empty, broken-looking box. Both are
+     already reachable inside the hamburger menu, so hide them fully here
+     and let the top bar stay clean: logo + hamburger only. */
   .nav-resume-btn,
   .nav-cta {
-    padding: 0.625rem;
-    min-width: auto;
+    display: none;
   }
 
   .hero {
@@ -5909,12 +5836,6 @@ section::before {
 
   .nav-actions {
     gap: 0.375rem;
-  }
-
-  .nav-resume-btn svg,
-  .nav-cta svg {
-    width: 18px;
-    height: 18px;
   }
 
   .hero {
