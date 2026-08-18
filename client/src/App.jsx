@@ -529,7 +529,7 @@ function App() {
     roleTimeoutRefs.current.forEach(timeout => clearTimeout(timeout))
     roleTimeoutRefs.current = []
     
-    // Wait for name to finish first (2 seconds)
+    // Wait for the name typewriter to finish first (~13 chars * 120ms + buffer)
     const initialDelay = setTimeout(() => {
       const typeRole = () => {
         const currentRole = ROLES[currentRoleIndex]
@@ -558,7 +558,7 @@ function App() {
       }
       
       typeRole()
-    }, currentRoleIndex === 0 ? 2000 : 0)
+    }, currentRoleIndex === 0 ? 1800 : 0)
     
     roleTimeoutRefs.current.push(initialDelay)
     
@@ -663,14 +663,17 @@ function App() {
     })
   }
 
+  // Note: these delays run right after the loading screen unmounts, so they
+  // should be short. Previously they were tuned for 1.8-2.5s, which left the
+  // homepage looking blank/frozen for a couple seconds after loading finished.
   const navVariants = {
     hidden: { opacity: 0, y: -100 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        delay: 1.8,
-        duration: 0.8,
+        delay: 0.1,
+        duration: 0.6,
         ease: [0.6, -0.05, 0.01, 0.99]
       }
     }
@@ -682,8 +685,8 @@ function App() {
       opacity: 1,
       y: 0,
       transition: {
-        delay: 2.3,
-        duration: 0.9,
+        delay: 0.2,
+        duration: 0.7,
         ease: [0.6, -0.05, 0.01, 0.99]
       }
     }
@@ -695,8 +698,8 @@ function App() {
       opacity: 1,
       y: 0,
       transition: {
-        delay: 2.1,
-        duration: 0.95,
+        delay: 0.3,
+        duration: 0.75,
         ease: [0.6, -0.05, 0.01, 0.99]
       }
     }
@@ -860,7 +863,7 @@ function App() {
               className="hero-greeting"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 2.5 }}
+              transition={{ delay: 0.3, duration: 0.5 }}
             >
               Hey There! 👋
             </motion.span>

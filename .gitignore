@@ -38,3 +38,4 @@ lerna-debug.log*
 # Stale duplicate copy of this project nested inside itself - not part of
 # the real source tree (client/ and server/ at the repo root are canonical).
 /Harshil Portfolio/
+.vercel
