@@ -452,6 +452,7 @@ body {
 
 /* ========== HERO SECTION ========== */
 .hero {
+  --hero-pb: 2rem;
   position: relative;
   min-height: 100vh;
   display: grid;
@@ -459,7 +460,7 @@ body {
   align-items: center;
   background: #f5f5f0;
   overflow: hidden;
-  padding: 2rem 2rem 2rem;
+  padding: 2rem 2rem var(--hero-pb);
   padding-top: calc(var(--nav-height, 88px) + 2rem);
 }
 
@@ -474,6 +475,21 @@ body {
   opacity: 0.6;
   pointer-events: none;
   z-index: 0;
+}
+
+/* Full-bleed orange bar that cuts straight across the hero and sits on
+   top of the profile photo's bottom edge, covering it like a brutalist
+   block accent and separating the hero from the next section. */
+.hero-bottom-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: var(--hero-pb, 2rem);
+  height: 64px;
+  background: #d97706;
+  border-top: 3px solid #1a1a1a;
+  z-index: 6;
+  transform-origin: left center;
 }
 
 .strips-container {
@@ -3476,6 +3492,9 @@ section::before {
   text-align: center;
   line-height: 1.35;
   margin: 0;
+  max-width: 90vw;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
@@ -5421,6 +5440,13 @@ section::before {
   }
 
   .photo-container {
+    display: none;
+  }
+
+  /* The orange divider bar was positioned to sit on the profile photo's
+     bottom edge. Since the photo itself is hidden below 1024px, hide the
+     bar too instead of leaving a stray block with nothing to cover. */
+  .hero-bottom-bar {
     display: none;
   }
 

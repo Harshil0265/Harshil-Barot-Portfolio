@@ -31,13 +31,15 @@ const LoadingScreen = ({ onLoadingComplete }) => {
     { icon: Binary, color: '#d97706', size: 30 }
   ]
 
-  // Harshil Barot in a focused set of languages only.
+  // Harshil Barot in a focused set of languages, followed by his role
+  // titles (matching the hero section's ROLES) so the loading screen
+  // introduces both the name and what he does before handing off.
   const languageVersions = [
     { text: 'Harshil Barot', language: 'English' },
-    { text: 'હર્ષિલ બારોટ', language: 'ગુજરાતી (Gujarati)' },
-    { text: 'ਹਰਸ਼ਿਲ ਬਾਰੋਟ', language: 'ਪੰਜਾਬੀ (Punjabi)' },
-    { text: 'ஹர்ஷில் பரோட்', language: 'தமிழ் (Tamil)' },
-    { text: '哈尔希尔·巴罗特', language: '中文 (Chinese)' }
+    { text: 'Full-Stack Developer', language: 'MERN Stack' },
+    { text: 'UI/UX Designer', language: 'Figma · Design Systems' },
+    { text: 'Problem Solver', language: 'Logic & Debugging' },
+    { text: 'Digital Creator', language: 'Content & Code' }
   ]
 
   // Cursor blinking effect
