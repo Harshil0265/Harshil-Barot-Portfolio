@@ -1,0 +1,27 @@
+{
+  "name": "harshil-portfolio",
+  "version": "1.0.0",
+  "description": "Full-stack MERN portfolio",
+  "scripts": {
+    "dev": "concurrently \"cd server && npm run dev\" \"cd client && npm run dev\"",
+    "server": "cd server && npm run dev",
+    "client": "cd client && npm run dev",
+    "build": "cd client && npm run build",
+    "install-server": "cd server && npm install",
+    "install-client": "cd client && npm install",
+    "install-all": "npm run install-server && npm run install-client"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  },
+  "keywords": [
+    "portfolio",
+    "mern",
+    "fullstack"
+  ],
+  "author": "Harshil",
+  "license": "ISC",
+  "dependencies": {
+    "@imgly/background-removal": "^1.7.0"
+  }
+}
