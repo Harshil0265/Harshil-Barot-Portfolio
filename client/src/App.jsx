@@ -595,7 +595,7 @@ function App() {
         ],
         liveUrl: 'https://www.paximmigration.in',
         githubUrl: '#',
-        image: null,
+        image: '/Pax_immigration.png',
         category: 'Web Development'
       },
       {
@@ -611,7 +611,7 @@ function App() {
         ],
         liveUrl: 'https://chai-bugs.vercel.app',
         githubUrl: '#',
-        image: null,
+        image: '/ChaiBugs.png',
         category: 'E-Commerce'
       },
       {
@@ -627,7 +627,7 @@ function App() {
         ],
         liveUrl: 'https://shabdsetu-mocha.vercel.app',
         githubUrl: '#',
-        image: null,
+        image: '/shabdsetu.png',
         category: 'Education'
       },
       {
@@ -643,7 +643,7 @@ function App() {
         ],
         liveUrl: 'https://aksharnirmaan.com',
         githubUrl: '#',
-        image: null,
+        image: '/AKshar_Nirmaan.png',
         category: 'Digital Solutions'
       }
     ])
