@@ -930,6 +930,13 @@ function App() {
             fetchPriority="high"
           />
         </motion.div>
+
+        <motion.div 
+          className="hero-bottom-bar"
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ delay: 0.4, duration: 0.7, ease: 'easeOut' }}
+        ></motion.div>
       </section>
 
 
