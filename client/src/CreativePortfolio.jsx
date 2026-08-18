@@ -10,6 +10,7 @@ import {
 import './CreativePortfolio.css'
 import CreativeLoadingScreen from './components/CreativeLoadingScreen'
 import CreativeContactSection from './components/CreativeContactSection'
+import CreativeScrollToTop from './components/CreativeScrollToTop'
 
 const InstagramIcon = ({ size = 24 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
@@ -649,6 +650,8 @@ function CreativePortfolio() {
           </div>
         </div>
       </footer>
+
+      <CreativeScrollToTop />
     </div>
       )}
     </>

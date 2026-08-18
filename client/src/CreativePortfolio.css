@@ -27,7 +27,7 @@ body.cp-theme::-webkit-scrollbar-thumb {
   --cp-secondary: #38bdf8;
   --cp-ink: #1a1a1a;
   --cp-bg: #eff8ff;
-  --font-body: 'Manrope', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-body: 'Josefin Slab', 'Manrope', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-display: 'Cormorant Garamond', 'Crimson Pro', Georgia, 'Times New Roman', serif;
   --font-alt: 'Syne', 'Space Grotesk', system-ui, sans-serif;
 
@@ -138,13 +138,13 @@ body.cp-theme::-webkit-scrollbar-thumb {
 }
 
 .cp-loading-name {
-  font-family: var(--font-display);
-  font-size: 4rem;
-  font-weight: 600;
+  font-family: 'Sacramento', cursive;
+  font-size: 5rem;
+  font-weight: 400;
   color: #1a1a1a;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.01em;
   text-align: center;
-  line-height: 1.2;
+  line-height: 1.25;
   margin: 0;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -175,7 +175,7 @@ body.cp-theme::-webkit-scrollbar-thumb {
 .cp-loading-subtitle {
   font-family: var(--font-body);
   font-size: 1rem;
-  color: #666666;
+  color: #2a2a2a;
   font-weight: 600;
   letter-spacing: 0.5px;
   text-align: center;
@@ -184,7 +184,7 @@ body.cp-theme::-webkit-scrollbar-thumb {
 
 @media (max-width: 992px) {
   .cp-loading-name {
-    font-size: 3rem;
+    font-size: 4rem;
   }
 
   .cp-loading-name-container {
@@ -194,7 +194,7 @@ body.cp-theme::-webkit-scrollbar-thumb {
 
 @media (max-width: 768px) {
   .cp-loading-name {
-    font-size: 2.5rem;
+    font-size: 3.25rem;
   }
 
   .cp-loading-language-label {
@@ -217,7 +217,7 @@ body.cp-theme::-webkit-scrollbar-thumb {
 
 @media (max-width: 480px) {
   .cp-loading-name {
-    font-size: 2rem;
+    font-size: 2.75rem;
   }
 
   .cp-loading-language-label {
@@ -609,7 +609,8 @@ body.cp-theme::-webkit-scrollbar-thumb {
 .cp-hero-description {
   font-size: 1.125rem;
   line-height: 1.75;
-  color: #555555;
+  color: #2a2a2a;
+  font-weight: 600;
   max-width: 600px;
   margin: 0 auto 2.5rem;
 }
@@ -766,7 +767,8 @@ body.cp-theme::-webkit-scrollbar-thumb {
 
 .cp-section-subtitle {
   font-size: 1.125rem;
-  color: #555555;
+  color: #2a2a2a;
+  font-weight: 600;
   max-width: 600px;
   margin: 0 auto;
   line-height: 1.65;
@@ -794,7 +796,8 @@ body.cp-theme::-webkit-scrollbar-thumb {
 .cp-intro-text {
   font-size: 1.125rem;
   line-height: 1.8;
-  color: #555555;
+  color: #2a2a2a;
+  font-weight: 600;
 }
 
 .cp-intro-text strong {
@@ -843,7 +846,8 @@ body.cp-theme::-webkit-scrollbar-thumb {
 .cp-vm-card p {
   font-size: 1rem;
   line-height: 1.7;
-  color: #666666;
+  color: #2a2a2a;
+  font-weight: 600;
 }
 
 .cp-traits-block h3 {
@@ -897,7 +901,8 @@ body.cp-theme::-webkit-scrollbar-thumb {
 
 .cp-quality-item p {
   font-size: 0.9375rem;
-  color: #666666;
+  color: #2a2a2a;
+  font-weight: 600;
   line-height: 1.55;
 }
 
@@ -1024,7 +1029,8 @@ body.cp-theme::-webkit-scrollbar-thumb {
 
 .cp-tool-chip p {
   font-size: 0.9375rem;
-  color: #666666;
+  color: #2a2a2a;
+  font-weight: 600;
   line-height: 1.55;
 }
 
@@ -1103,7 +1109,8 @@ body.cp-theme::-webkit-scrollbar-thumb {
 
 .cp-work-desc {
   font-size: 0.9375rem;
-  color: #666666;
+  color: #2a2a2a;
+  font-weight: 600;
   line-height: 1.6;
   margin-bottom: 1rem;
 }
@@ -1135,7 +1142,8 @@ body.cp-theme::-webkit-scrollbar-thumb {
 }
 
 .cp-footer p {
-  color: #666666;
+  color: #2a2a2a;
+  font-weight: 600;
   font-size: 0.9375rem;
   display: flex;
   align-items: center;
@@ -1439,7 +1447,8 @@ body.cp-theme::-webkit-scrollbar-thumb {
 
 .cp-contact-subheading {
   font-size: 1.125rem;
-  color: #555555;
+  color: #2a2a2a;
+  font-weight: 600;
   line-height: 1.7;
   max-width: 620px;
   margin: 0 auto;
@@ -1712,7 +1721,7 @@ body.cp-theme::-webkit-scrollbar-thumb {
   font-family: var(--font-body);
   font-size: 0.8438rem;
   font-weight: 600;
-  color: #666666;
+  color: #2a2a2a;
   transition: all 0.2s ease;
 }
 
@@ -1826,7 +1835,8 @@ body.cp-theme::-webkit-scrollbar-thumb {
 .cp-footer-brand-desc {
   font-size: 0.9375rem;
   line-height: 1.7;
-  color: #666666;
+  color: #2a2a2a;
+  font-weight: 600;
   max-width: 320px;
   margin-bottom: 1.5rem;
 }
@@ -1842,7 +1852,8 @@ body.cp-theme::-webkit-scrollbar-thumb {
   align-items: center;
   gap: 0.6rem;
   font-size: 0.875rem;
-  color: #555555;
+  color: #2a2a2a;
+  font-weight: 600;
   text-decoration: none;
 }
 
@@ -1879,7 +1890,8 @@ body.cp-theme::-webkit-scrollbar-thumb {
 
 .cp-footer-link-column a {
   font-size: 0.9375rem;
-  color: #666666;
+  color: #2a2a2a;
+  font-weight: 600;
   text-decoration: none;
   transition: color 0.2s ease;
 }
@@ -2037,5 +2049,152 @@ body.cp-theme::-webkit-scrollbar-thumb {
 
   .cp-footer-premium {
     padding: 3rem 0 0;
+  }
+}
+
+/* ===== CREATIVE SCROLL TO TOP ===== */
+.cp-scroll-top-wrapper {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 999;
+  pointer-events: auto;
+}
+
+.cp-scroll-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.cp-scroll-ring-progress {
+  transition: stroke-dashoffset 0.3s ease;
+}
+
+.cp-scroll-top-btn {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  background: #ffffff;
+  border: 2.5px solid var(--cp-ink);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 5px 5px 0 0 var(--cp-ink);
+  transition: all 0.3s ease;
+  overflow: visible;
+}
+
+.cp-scroll-top-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 7px 7px 0 0 var(--cp-ink);
+  background: #e0f2fe;
+}
+
+.cp-scroll-top-btn:active {
+  transform: translate(0, 0);
+  box-shadow: 3px 3px 0 0 var(--cp-ink);
+}
+
+.cp-scroll-icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.cp-scroll-icon {
+  color: #0ea5e9;
+}
+
+.cp-scroll-stars {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--cp-ink);
+  pointer-events: none;
+}
+
+.cp-scroll-particles {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.cp-scroll-particle {
+  color: #0ea5e9;
+  font-size: 8px;
+}
+
+.cp-scroll-tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 12px;
+  background: var(--cp-ink);
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 0.8125rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 2px solid #0ea5e9;
+  box-shadow: 3px 3px 0 0 rgba(14, 165, 233, 0.3);
+}
+
+.cp-scroll-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: var(--cp-ink);
+}
+
+.cp-scroll-top-wrapper:hover .cp-scroll-tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-5px);
+}
+
+@media (max-width: 768px) {
+  .cp-scroll-top-wrapper {
+    bottom: 1.5rem;
+    right: 1.5rem;
+  }
+
+  .cp-scroll-top-btn {
+    width: 50px;
+    height: 50px;
+  }
+
+  .cp-scroll-ring {
+    width: 58px;
+    height: 58px;
+  }
+
+  .cp-scroll-tooltip {
+    display: none;
   }
 }
