@@ -92,16 +92,13 @@ const ProjectCard = ({ project, index }) => {
       </div>
       <div className="project-info">
         <div className="project-header-row">
-          {project.category && (
-            <span className="project-category-pill">{project.category}</span>
-          )}
+          <h3 className="project-title">{project.title}</h3>
           <div className="project-meta">
             {project.tags && project.tags.slice(0, 2).map((tag, idx) => (
               <span key={idx} className="project-tag">{tag}</span>
             ))}
           </div>
         </div>
-        <h3 className="project-title">{project.title}</h3>
         <p className="project-description">{project.description}</p>
         <div className="project-tech">
           {project.features && project.features.slice(0, 4).map((feature, idx) => (
@@ -584,67 +581,99 @@ function App() {
     setProjects([
       {
         _id: '1',
-        title: 'Pax Immigration',
-        description: 'A comprehensive full-stack immigration services platform built with MERN stack, featuring client portals, document management, case tracking, and integrated payment processing.',
-        tags: ['React.js', 'Node.js', 'MongoDB', 'Express.js'],
+        title: 'AN Uniforms',
+        description: 'Enterprise-grade full-stack B2B uniform management platform built with Next.js and MERN stack. Features automated quotation generation, multi-industry inquiry management, real-time order tracking, inventory control, and comprehensive admin dashboard for operational excellence.',
+        tags: ['Full-Stack Project', 'MERN Stack'],
         features: [
-          { title: 'MERN Stack', description: 'Full-Stack Development' },
-          { title: 'Client Portal', description: 'User Management' },
-          { title: 'Document System', description: 'File Management' },
-          { title: 'Payment Integration', description: 'Secure Transactions' }
+          { title: 'Next.js', description: 'React framework for production' },
+          { title: 'MongoDB', description: 'NoSQL database solution' },
+          { title: 'Node.js', description: 'JavaScript runtime environment' },
+          { title: 'Express.js', description: 'Backend web framework' }
+        ],
+        liveUrl: 'https://an-uniforms.vercel.app/',
+        githubUrl: '#',
+        image: '/AN Uniforms.png',
+        category: 'AN Uniforms'
+      },
+      {
+        _id: '2',
+        title: 'Ripper',
+        description: 'High-performance full-stack media downloader platform built with Next.js and MERN architecture. Enables seamless MP3/MP4 downloads from YouTube, Instagram, and TikTok with FFmpeg integration, format conversion, and quality optimization for superior user experience. Backend hosted on Render for reliable performance.',
+        tags: ['Full-Stack Project', 'MERN Stack'],
+        features: [
+          { title: 'Next.js', description: 'React framework for production' },
+          { title: 'MongoDB', description: 'NoSQL database solution' },
+          { title: 'Node.js', description: 'JavaScript runtime environment' },
+          { title: 'FFmpeg', description: 'Media processing library' }
+        ],
+        liveUrl: 'https://ripperfm.vercel.app/',
+        githubUrl: '#',
+        image: '/ripper.png',
+        category: 'Ripper'
+      },
+      {
+        _id: '3',
+        title: 'Pax Immigration',
+        description: 'Comprehensive full-stack immigration services platform built with Next.js and MERN stack. Features secure client portals, document management system, case tracking workflows, appointment scheduling, payment gateway integration, and robust admin panel for immigration consultants.',
+        tags: ['Full-Stack Project', 'MERN Stack'],
+        features: [
+          { title: 'Next.js', description: 'React framework for production' },
+          { title: 'MongoDB', description: 'NoSQL database solution' },
+          { title: 'Node.js', description: 'JavaScript runtime environment' },
+          { title: 'Express.js', description: 'Backend web framework' }
         ],
         liveUrl: 'https://www.paximmigration.in',
         githubUrl: '#',
         image: '/Pax_immigration.png',
-        category: 'Web Development'
+        category: 'Pax Immigration'
       },
       {
-        _id: '2',
-        title: 'ChaiBugs Cafe Platform',
-        description: 'Modern cafe management system with online ordering, table reservation, menu management, and real-time order tracking. Built for seamless customer experience and efficient operations.',
-        tags: ['React.js', 'Firebase', 'Stripe', 'Tailwind CSS'],
+        _id: '4',
+        title: 'ChaiBugs Cafe',
+        description: 'Modern full-stack cafe management system built with Next.js and MERN architecture. Includes online ordering, real-time table reservation, dynamic menu management, order tracking, Stripe payment integration, and comprehensive admin dashboard for restaurant operations.',
+        tags: ['Full-Stack Project', 'MERN Stack'],
         features: [
-          { title: 'Online Ordering', description: 'E-Commerce' },
-          { title: 'Table Booking', description: 'Reservation System' },
-          { title: 'Menu Manager', description: 'Admin Dashboard' },
-          { title: 'Payment Gateway', description: 'Stripe Integration' }
+          { title: 'Next.js', description: 'React framework for production' },
+          { title: 'MongoDB', description: 'NoSQL database solution' },
+          { title: 'Node.js', description: 'JavaScript runtime environment' },
+          { title: 'Stripe API', description: 'Payment processing integration' }
         ],
         liveUrl: 'https://chai-bugs.vercel.app',
         githubUrl: '#',
         image: '/ChaiBugs.png',
-        category: 'E-Commerce'
+        category: 'ChaiBugs Cafe'
       },
       {
-        _id: '3',
+        _id: '5',
         title: 'ShabdSetu',
-        description: 'An innovative educational platform connecting students with quality learning resources. Features include course management, live classes, progress tracking, and interactive assessments.',
-        tags: ['Next.js', 'PostgreSQL', 'TypeScript', 'WebRTC'],
+        description: 'Advanced full-stack educational platform built with Next.js and MERN stack. Features live video classes with WebRTC, comprehensive course management system, student progress tracking, interactive assessments, payment integration, and detailed analytics dashboard for educators.',
+        tags: ['Full-Stack Project', 'MERN Stack'],
         features: [
-          { title: 'Live Classes', description: 'Video Conferencing' },
-          { title: 'Course System', description: 'LMS Platform' },
-          { title: 'Progress Tracking', description: 'Analytics Dashboard' },
-          { title: 'Assessments', description: 'Interactive Quizzes' }
+          { title: 'Next.js', description: 'React framework for production' },
+          { title: 'MongoDB', description: 'NoSQL database solution' },
+          { title: 'Node.js', description: 'JavaScript runtime environment' },
+          { title: 'WebRTC', description: 'Real-time video communication' }
         ],
         liveUrl: 'https://shabdsetu-mocha.vercel.app',
         githubUrl: '#',
         image: '/shabdsetu.png',
-        category: 'Education'
+        category: 'ShabdSetu'
       },
       {
-        _id: '4',
+        _id: '6',
         title: 'Akshar Nirmaan',
-        description: 'A technology-driven digital growth platform empowering businesses with comprehensive branding solutions, marketing automation, and scalable digital strategies for enhanced online presence.',
-        tags: ['React.js', 'Node.js', 'AI/ML', 'Marketing Automation'],
+        description: 'Enterprise full-stack digital growth platform built with Next.js and MERN stack. Empowers businesses with AI-driven branding solutions, marketing automation workflows, SEO optimization, social media management, content scheduling, analytics dashboard, and scalable digital strategies.',
+        tags: ['Full-Stack Project', 'MERN Stack'],
         features: [
-          { title: 'Brand Identity', description: 'Creative Design' },
-          { title: 'Digital Marketing', description: 'Growth Strategies' },
-          { title: 'Automation Tools', description: 'Business Solutions' },
-          { title: 'Analytics', description: 'Performance Tracking' }
+          { title: 'Next.js', description: 'React framework for production' },
+          { title: 'MongoDB', description: 'NoSQL database solution' },
+          { title: 'Node.js', description: 'JavaScript runtime environment' },
+          { title: 'AI/ML', description: 'Artificial intelligence integration' }
         ],
         liveUrl: 'https://aksharnirmaan.com',
         githubUrl: '#',
         image: '/AKshar_Nirmaan.png',
-        category: 'Digital Solutions'
+        category: 'Akshar Nirmaan'
       }
     ])
     setLoading(false)

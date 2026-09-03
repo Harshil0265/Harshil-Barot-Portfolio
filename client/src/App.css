@@ -1598,7 +1598,7 @@ section::before {
   align-items: center;
   margin-bottom: 1rem;
   flex-wrap: wrap;
-  gap: 0.75rem;
+  gap: 1rem;
 }
 
 .project-category-pill {
@@ -1633,12 +1633,13 @@ section::before {
 .project-title {
   font-family: var(--font-display);
   font-size: 1.875rem;
-  margin-bottom: 0.875rem;
+  margin-bottom: 0;
   color: #1a1a1a;
   line-height: 1.25;
   font-weight: 600;
   letter-spacing: -0.02em;
   text-rendering: optimizeLegibility;
+  flex: 1;
 }
 
 .project-description {
