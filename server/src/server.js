@@ -1,27 +1,17 @@
-require('dotenv').config();
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
-const authRoutes = require('./routes/auth');
-const contactRoutes = require('./routes/contact');
+// Local development: `npm run dev` (the site's Vite server proxies /api here).
+// In production the same app runs as a Vercel function (api/index.js).
+require('./loadEnv')
+const app = require('./app')
+const { connect } = require('./db')
+const { mailConfigured } = require('./lib/mailer')
 
-const app = express();
+const port = Number(process.env.PORT) || 5000
 
-app.use(cors());
-app.use(express.json());
+app.listen(port, () => {
+  console.log(`API on http://localhost:${port}`)
+  if (!mailConfigured()) console.log('Email is off: set SMTP_USER and SMTP_PASS in server/.env to send inquiry emails.')
+})
 
-mongoose.connect(process.env.MONGO_URI)
+connect()
   .then(() => console.log('MongoDB connected'))
-  .catch(err => console.log(err));
-
-app.get('/', (req, res) => {
-  res.json({ message: 'Portfolio API is running!' });
-});
-
-app.use('/api/auth', authRoutes);
-app.use('/api/contact', contactRoutes);
-
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+  .catch((err) => console.error(`MongoDB: ${err.message}`))

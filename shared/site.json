@@ -1,0 +1,34 @@
+{
+  "name": "Harshil Barot",
+  "role": "Founder, Akshar Nirmaan",
+  "email": "harshill.barot@gmail.com",
+  "phone": "+91 88669 82848",
+  "phoneE164": "+918866982848",
+  "siteUrl": "https://harshil-barot.vercel.app",
+  "company": {
+    "name": "Akshar Nirmaan",
+    "url": "https://aksharnirmaan.com",
+    "contact": "https://www.aksharnirmaan.com/contact"
+  },
+  "socials": [
+    { "label": "GitHub", "href": "https://github.com/Harshil0265" },
+    { "label": "LinkedIn", "href": "https://www.linkedin.com/in/harshil-barot-an" },
+    { "label": "Instagram", "href": "https://www.instagram.com/harshill.barot/" },
+    { "label": "X / Twitter", "href": "https://x.com/01Harshilbarot" },
+    { "label": "WhatsApp", "href": "https://wa.me/918866982848" }
+  ],
+  "inquiry": {
+    "services": ["Website", "Web app or platform", "Online store", "Brand identity", "Something else"],
+    "budgets": ["Under ₹50k", "₹50k to ₹2L", "₹2L to ₹5L", "₹5L+", "Not sure yet"],
+    "limits": {
+      "nameMin": 2,
+      "nameMax": 60,
+      "emailMax": 254,
+      "phoneDigitsMin": 7,
+      "phoneDigitsMax": 15,
+      "companyMax": 100,
+      "messageMin": 15,
+      "messageMax": 2000
+    }
+  }
+}

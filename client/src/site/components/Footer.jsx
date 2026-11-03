@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { NAV, PROFILE, SOCIALS } from '../data'
 import { gsap } from '../motion'
+import { TRACK } from '../sound'
 import { useFitText } from './Hero'
 import { Arrow, Clock, SectionLink } from './ui'
 
@@ -75,6 +76,9 @@ export default function Footer({ base }) {
 
       <div className="ftr__base">
         <span>&copy; {new Date().getFullYear()} {PROFILE.name}. All rights reserved.</span>
+        <span>
+          Music: {TRACK.composer.split(' ').pop()}, Nocturne Op. 9 No. 2, played by {TRACK.performer} ({TRACK.credit})
+        </span>
         <span>Designed &amp; developed by Harshil, in Vadodara.</span>
       </div>
     </footer>

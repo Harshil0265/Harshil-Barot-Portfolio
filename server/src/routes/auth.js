@@ -1,15 +1,18 @@
-const express = require('express');
-const router = express.Router();
-const authController = require('../controllers/authController');
-const auth = require('../middleware/auth');
+const express = require('express')
+const auth = require('../controllers/authController')
+const requireAdmin = require('../middleware/auth')
+const { rateLimit } = require('../lib/http')
 
-// Create admin (use once to initialize)
-router.post('/create-admin', authController.createAdmin);
+const router = express.Router()
 
-// Login
-router.post('/login', authController.login);
+const loginLimit = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 10,
+  message: 'Too many sign-in attempts. Please wait a few minutes and try again.',
+})
 
-// Verify token
-router.get('/verify', auth, authController.verifyToken);
+router.post('/login', loginLimit, auth.login)
+router.get('/me', requireAdmin, auth.me)
+router.post('/password', requireAdmin, loginLimit, auth.changePassword)
 
-module.exports = router;
+module.exports = router

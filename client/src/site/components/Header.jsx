@@ -1,7 +1,8 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { NAV, PROFILE, SOCIALS } from '../data'
 import { gsap, lockScroll, ScrollTrigger } from '../motion'
-import { Clock, Logo, MaskLine, SectionLink } from './ui'
+import { armAutoStart } from '../sound'
+import { Clock, Logo, MaskLine, SectionLink, SoundToggle } from './ui'
 
 // `base`: set on pages other than home, so the links route back to it.
 export default function Header({ intro, logoVisible, base }) {
@@ -41,6 +42,9 @@ export default function Header({ intro, logoVisible, base }) {
     lockScroll(open)
     document.documentElement.classList.toggle('menu-open', open)
   }
+
+  // The music starts with the visitor's first click, tap or key press.
+  useEffect(() => armAutoStart(), [])
 
   useEffect(() => {
     const close = () => openRef.current && setOpen(false)
@@ -92,6 +96,15 @@ export default function Header({ intro, logoVisible, base }) {
             ))}
           </MaskLine>
         </nav>
+
+        <div className="hdr__meta hdr__meta--sound">
+          <MaskLine className="lbl">Sound:</MaskLine>
+          <MaskLine>
+            <SoundToggle />
+          </MaskLine>
+        </div>
+
+        <SoundToggle className="hdr__sound-m" showState={false} />
 
         <button
           className="hdr__menu-btn"

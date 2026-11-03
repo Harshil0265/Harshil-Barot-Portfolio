@@ -1,75 +1,60 @@
 /**
- * Setup Script - Create Initial Admin Account
- * 
- * Run this once to create your admin account:
- * node src/setup-admin.js
+ * Create the admin account, or reset its password.
+ *
+ *   npm run setup-admin --prefix server
+ *   npm run setup-admin --prefix server -- --username harshil --password "a long password"
+ *
+ * Uses MONGO_URI from server/.env. Point it at the production database
+ * (MongoDB Atlas) to set up the live inbox. On Vercel you can skip this:
+ * set ADMIN_USERNAME and ADMIN_PASSWORD and sign in once (see README).
  */
+require('./loadEnv')
+const readline = require('readline')
+const mongoose = require('mongoose')
+const { connect } = require('./db')
+const Admin = require('./models/Admin')
 
-require('dotenv').config();
-const mongoose = require('mongoose');
-const Admin = require('./models/Admin');
-const readline = require('readline');
+const arg = (name) => {
+  const i = process.argv.indexOf(`--${name}`)
+  return i > -1 ? process.argv[i + 1] : undefined
+}
 
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
-
-const question = (query) => new Promise((resolve) => rl.question(query, resolve));
-
-async function setupAdmin() {
+async function main() {
+  const rl = readline.createInterface({ input: process.stdin, output: process.stdout })
+  const ask = (q) => new Promise((resolve) => rl.question(q, resolve))
   try {
-    // Connect to MongoDB
-    await mongoose.connect(process.env.MONGO_URI);
-    console.log('✓ Connected to MongoDB');
+    await connect()
+    console.log('Connected to MongoDB')
 
-    // Check if admin already exists
-    const existingAdmin = await Admin.findOne();
-    if (existingAdmin) {
-      console.log('⚠ Admin account already exists!');
-      console.log('Username:', existingAdmin.username);
-      
-      const overwrite = await question('\nDo you want to create a new admin? This will delete the existing one. (yes/no): ');
-      if (overwrite.toLowerCase() !== 'yes') {
-        console.log('Setup cancelled.');
-        process.exit(0);
-      }
-      
-      await Admin.deleteMany({});
-      console.log('✓ Existing admin deleted');
+    const existing = await Admin.findOne()
+    let username = (arg('username') || '').trim().toLowerCase()
+    if (existing) {
+      console.log(`An admin already exists: ${existing.username}. This resets its password.`)
+      username = existing.username
+    } else if (!username) {
+      username = (await ask('Admin username: ')).trim().toLowerCase()
     }
+    const password = arg('password') || (await ask('New password (8+ characters): '))
 
-    // Get admin credentials
-    console.log('\n--- Create Admin Account ---\n');
-    const username = await question('Enter admin username: ');
-    const password = await question('Enter admin password: ');
+    if (username.length < 3) throw new Error('The username needs at least 3 characters.')
+    if (password.length < 8) throw new Error('The password needs at least 8 characters.')
 
-    if (!username || !password) {
-      console.log('✗ Username and password are required!');
-      process.exit(1);
+    if (existing) {
+      const admin = await Admin.findById(existing._id).select('+password')
+      admin.password = password
+      await admin.save()
+      console.log(`Password updated for ${username}. Other sessions are signed out.`)
+    } else {
+      await Admin.create({ username, password })
+      console.log(`Admin ${username} created. Sign in at /admin (or press Ctrl + Shift + A on the site).`)
     }
-
-    if (password.length < 6) {
-      console.log('✗ Password must be at least 6 characters long!');
-      process.exit(1);
-    }
-
-    // Create admin
-    const admin = new Admin({ username, password });
-    await admin.save();
-
-    console.log('\n✓ Admin account created successfully!');
-    console.log('Username:', username);
-    console.log('\n🔐 You can now login to the admin panel using Ctrl + Shift + A');
-    
-  } catch (error) {
-    console.error('✗ Error:', error.message);
-    process.exit(1);
+  } catch (err) {
+    console.error(`Setup failed: ${err.message}`)
+    process.exitCode = 1
   } finally {
-    rl.close();
-    mongoose.connection.close();
-    process.exit(0);
+    rl.close()
+    await mongoose.disconnect()
   }
 }
 
-setupAdmin();
+main()

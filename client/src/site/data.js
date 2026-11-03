@@ -1,26 +1,23 @@
+// Contact details, socials and the contact form's choices live in
+// shared/site.json, which the API and its emails read too.
+import site from '../../../shared/site.json'
+
 export const PROFILE = {
-  name: 'Harshil Barot',
-  company: { name: 'Akshar Nirmaan', url: 'https://aksharnirmaan.com', contact: 'https://www.aksharnirmaan.com/contact' },
+  name: site.name,
+  company: site.company,
   location: 'Vadodara, India',
   timeZone: 'Asia/Kolkata',
-  email: 'harshill.barot@gmail.com',
-  phone: '+91 88669 82848',
-  phoneHref: 'tel:+918866982848',
+  email: site.email,
+  phone: site.phone,
+  phoneHref: `tel:${site.phoneE164}`,
   resume: '/Harshil_Barot_Resume.pdf',
   // The hero line; it runs on into "Akshar Nirmaan. Scroll to fly through the work."
   intro:
     'A young entrepreneur helping startups and growing businesses launch faster and grow online, with websites, products and brands that win customers. Founder of',
 }
 
-// Every social link on the site reads from here; the JSON-LD `sameAs` list
-// and twitter:creator in index.html mirror these.
-export const SOCIALS = [
-  { label: 'GitHub', href: 'https://github.com/Harshil0265' },
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/harshil-barot-an' },
-  { label: 'Instagram', href: 'https://www.instagram.com/harshill.barot/' },
-  { label: 'X / Twitter', href: 'https://x.com/01Harshilbarot' },
-  { label: 'WhatsApp', href: 'https://wa.me/918866982848' },
-]
+// The JSON-LD `sameAs` list and twitter:creator in index.html mirror these.
+export const SOCIALS = site.socials
 
 // Home page targets: Selected, About and Contact open the box; Work flies into
 // the projects (the pixel fly-through).
@@ -240,6 +237,7 @@ export const TESTIMONIALS = [
   },
 ]
 
-// Choices in the contact form ("What do you need?" and "Budget").
-export const CONTACT_NEEDS = ['Website', 'Web app or platform', 'Online store', 'Brand identity', 'Something else']
-export const CONTACT_BUDGETS = ['Under ₹50k', '₹50k to ₹2L', '₹2L to ₹5L', '₹5L+', 'Not sure yet']
+// Choices and limits for the contact form (the API checks the same ones).
+export const CONTACT_NEEDS = site.inquiry.services
+export const CONTACT_BUDGETS = site.inquiry.budgets
+export const CONTACT_LIMITS = site.inquiry.limits

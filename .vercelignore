@@ -1,8 +1,9 @@
-# Uploaded by `vercel` from this machine. Only the site is deployed (vercel.json
-# builds client/); the API runs elsewhere and its secrets must never be uploaded.
-server
+# Uploaded by `vercel` from this machine. The site (client/) and the API
+# (api/ + server/ + shared/) deploy together; secrets and installs never do.
+node_modules
 client/dist
 client/scripts
 *.md
 .env
 .env.*
+!.env.example

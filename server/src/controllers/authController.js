@@ -1,122 +1,82 @@
-const jwt = require('jsonwebtoken');
-const Admin = require('../models/Admin');
+const crypto = require('crypto')
+const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
+const Admin = require('../models/Admin')
+const { jwt: cfg, bootstrapAdmin } = require('../config')
+const { HttpError } = require('../lib/http')
 
-// Admin login
+// Compared against when the username doesn't exist, so a wrong username
+// takes as long as a wrong password.
+const DUMMY_HASH = '$2b$12$co/GW4SduZUgrfK.uNmhr.MzeXeE.rdqLkxAa/dI9PEVvO8owBNgm'
+const PASSWORD_MIN = 8
+
+const str = (v) => (typeof v === 'string' ? v : '')
+const sameText = (a, b) => {
+  const x = crypto.createHash('sha256').update(a).digest()
+  const y = crypto.createHash('sha256').update(b).digest()
+  return crypto.timingSafeEqual(x, y)
+}
+
+function issue(admin) {
+  const token = jwt.sign({ sub: String(admin._id), username: admin.username }, cfg.secret, {
+    algorithm: 'HS256',
+    expiresIn: cfg.ttl,
+    issuer: cfg.issuer,
+    audience: cfg.audience,
+  })
+  const { exp } = jwt.decode(token)
+  return { token, expiresAt: new Date(exp * 1000).toISOString(), admin: { username: admin.username } }
+}
+
+// First run on a fresh database: signing in with ADMIN_USERNAME and
+// ADMIN_PASSWORD from the environment creates that admin. Once any admin
+// exists this does nothing, so those variables can then be removed.
+async function bootstrap(username, password) {
+  if (!bootstrapAdmin.username || !bootstrapAdmin.password) return null
+  if (!sameText(username, bootstrapAdmin.username) || !sameText(password, bootstrapAdmin.password)) return null
+  if ((await Admin.estimatedDocumentCount()) > 0) return null
+  if (password.length < PASSWORD_MIN) throw new HttpError(400, `ADMIN_PASSWORD must be at least ${PASSWORD_MIN} characters.`)
+  await Admin.create({ username, password })
+  return Admin.findOne({ username }).select('+password')
+}
+
 exports.login = async (req, res) => {
-  try {
-    const { username, password } = req.body;
+  if (!cfg.secret) throw new HttpError(500, 'Sign-in is not set up on the server (JWT_SECRET).')
+  const username = str(req.body?.username).trim().toLowerCase()
+  const password = str(req.body?.password)
+  if (!username || !password) throw new HttpError(400, 'Enter your username and password.')
 
-    // Check if admin exists
-    const admin = await Admin.findOne({ username });
-    if (!admin) {
-      return res.status(401).json({
-        success: false,
-        message: 'Invalid credentials'
-      });
-    }
+  const admin = (await Admin.findOne({ username }).select('+password')) || (await bootstrap(username, password))
+  const ok = admin ? await admin.checkPassword(password) : await bcrypt.compare(password, DUMMY_HASH)
+  if (!admin || !ok) throw new HttpError(401, 'That username and password don’t match.')
 
-    // Check password
-    const isPasswordValid = await admin.comparePassword(password);
-    if (!isPasswordValid) {
-      return res.status(401).json({
-        success: false,
-        message: 'Invalid credentials'
-      });
-    }
+  admin.lastLoginAt = new Date()
+  await admin.save()
+  res.json(issue(admin))
+}
 
-    // Generate JWT token
-    const token = jwt.sign(
-      { id: admin._id, username: admin.username },
-      process.env.JWT_SECRET,
-      { expiresIn: '24h' }
-    );
+exports.me = async (req, res) => {
+  res.json({
+    admin: { username: req.admin.username, lastLoginAt: req.admin.lastLoginAt },
+    expiresAt: new Date(req.tokenExp * 1000).toISOString(),
+  })
+}
 
-    res.json({
-      success: true,
-      message: 'Login successful',
-      token,
-      admin: {
-        id: admin._id,
-        username: admin.username
-      }
-    });
-  } catch (error) {
-    console.error('Login error:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Login failed',
-      error: error.message
-    });
-  }
-};
+// Changing the password signs out every other session.
+exports.changePassword = async (req, res) => {
+  const current = str(req.body?.currentPassword)
+  const next = str(req.body?.newPassword)
+  const errors = {}
+  if (!current) errors.currentPassword = 'Enter your current password'
+  if (next.length < PASSWORD_MIN) errors.newPassword = `At least ${PASSWORD_MIN} characters`
+  else if (next === current) errors.newPassword = 'Choose a different password'
+  if (Object.keys(errors).length) throw new HttpError(422, 'Please check the highlighted fields.', { errors })
 
-// Verify token
-exports.verifyToken = async (req, res) => {
-  try {
-    const admin = await Admin.findById(req.adminId).select('-password');
-    
-    if (!admin) {
-      return res.status(404).json({
-        success: false,
-        message: 'Admin not found'
-      });
-    }
+  const admin = await Admin.findById(req.admin._id).select('+password')
+  if (!(await admin.checkPassword(current)))
+    throw new HttpError(422, 'Please check the highlighted fields.', { errors: { currentPassword: 'That’s not your current password' } })
 
-    res.json({
-      success: true,
-      admin: {
-        id: admin._id,
-        username: admin.username
-      }
-    });
-  } catch (error) {
-    console.error('Verify token error:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Token verification failed',
-      error: error.message
-    });
-  }
-};
-
-// Create initial admin (use this once to create your admin account)
-exports.createAdmin = async (req, res) => {
-  try {
-    // Check if admin already exists
-    const existingAdmin = await Admin.findOne();
-    if (existingAdmin) {
-      return res.status(400).json({
-        success: false,
-        message: 'Admin already exists'
-      });
-    }
-
-    const { username, password } = req.body;
-
-    if (!username || !password) {
-      return res.status(400).json({
-        success: false,
-        message: 'Username and password are required'
-      });
-    }
-
-    const admin = new Admin({ username, password });
-    await admin.save();
-
-    res.status(201).json({
-      success: true,
-      message: 'Admin created successfully',
-      admin: {
-        id: admin._id,
-        username: admin.username
-      }
-    });
-  } catch (error) {
-    console.error('Create admin error:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Failed to create admin',
-      error: error.message
-    });
-  }
-};
+  admin.password = next
+  await admin.save()
+  res.json(issue(admin))
+}

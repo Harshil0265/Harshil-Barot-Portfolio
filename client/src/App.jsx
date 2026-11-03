@@ -1,4 +1,4 @@
-import { Suspense, lazy, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { useLocation, useNavigationType } from 'react-router-dom'
 import Box from './site/components/Box'
 import Header from './site/components/Header'
@@ -10,9 +10,6 @@ import { PROJECTS, SOCIALS } from './site/data'
 import { ScrollTrigger, getLenis, initSmoothScroll, loadImage, lockScroll, scrollToTarget } from './site/motion'
 import { cardProgress } from './site/Scene'
 import './site/site.css'
-
-// Opened rarely (Ctrl + Shift + A), so it stays out of the main bundle.
-const AdminPanel = lazy(() => import('./components/AdminPanel'))
 
 // Survives route changes (not reloads): the loader plays once per visit, and
 // coming back from a case study lands where the visitor left off.
@@ -37,8 +34,6 @@ export default function App() {
   const closeBox = useCallback(() => setBox(null), [])
   const openView = useCallback((view) => setBox({ view }), [])
   const openProject = useCallback((slug) => setBox({ view: 'project', slug }), [])
-  const [adminOpen, setAdminOpen] = useState(false)
-  const [adminLoaded, setAdminLoaded] = useState(false)
   const started = phase !== 'loading'
 
   const assets = useMemo(() => {
@@ -116,19 +111,6 @@ export default function App() {
     return () => document.removeEventListener('click', onClick)
   }, [])
 
-  // Hidden admin inbox: Ctrl + Shift + A
-  useEffect(() => {
-    const onKey = (e) => {
-      if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'a') {
-        e.preventDefault()
-        setAdminLoaded(true)
-        setAdminOpen((v) => !v)
-      }
-    }
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [])
-
   useEffect(() => {
     boxRef.current = box
     document.documentElement.classList.toggle('is-boxed', !!box)
@@ -192,11 +174,6 @@ export default function App() {
         </span>
       </div>
       {phase !== 'done' && <Loader assets={assets} onReveal={reveal} onDone={() => setPhase('done')} />}
-      {adminLoaded && (
-        <Suspense fallback={null}>
-          <AdminPanel isOpen={adminOpen} onClose={() => setAdminOpen(false)} />
-        </Suspense>
-      )}
     </div>
   )
 }

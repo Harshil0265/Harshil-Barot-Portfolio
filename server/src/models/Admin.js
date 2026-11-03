@@ -1,33 +1,28 @@
-const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
+const mongoose = require('mongoose')
+const bcrypt = require('bcryptjs')
 
-const adminSchema = new mongoose.Schema({
-  username: {
-    type: String,
-    required: true,
-    unique: true,
-    trim: true
+const adminSchema = new mongoose.Schema(
+  {
+    username: { type: String, required: true, unique: true, trim: true, lowercase: true, minlength: 3, maxlength: 40 },
+    password: { type: String, required: true, select: false },
+    // Tokens issued before this moment stop working (see middleware/auth).
+    // Tokens carry whole seconds, so it sits a second back: a token signed
+    // right after the account is created or the password changed still counts.
+    passwordChangedAt: { type: Date, default: () => new Date(Date.now() - 1000) },
+    lastLoginAt: Date,
   },
-  password: {
-    type: String,
-    required: true
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now
-  }
-});
+  { timestamps: true },
+)
 
-// Hash password before saving
-adminSchema.pre('save', async function(next) {
-  if (!this.isModified('password')) return next();
-  this.password = await bcrypt.hash(this.password, 12);
-  next();
-});
+// Mongoose 9 runs async hooks without a `next` callback.
+adminSchema.pre('save', async function () {
+  if (!this.isModified('password')) return
+  this.password = await bcrypt.hash(this.password, 12)
+  if (!this.isNew) this.passwordChangedAt = new Date(Date.now() - 1000)
+})
 
-// Method to compare password
-adminSchema.methods.comparePassword = async function(candidatePassword) {
-  return await bcrypt.compare(candidatePassword, this.password);
-};
+adminSchema.methods.checkPassword = function (candidate) {
+  return bcrypt.compare(candidate, this.password)
+}
 
-module.exports = mongoose.model('Admin', adminSchema);
+module.exports = mongoose.models.Admin || mongoose.model('Admin', adminSchema)

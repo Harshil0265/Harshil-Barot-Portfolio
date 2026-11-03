@@ -2,6 +2,33 @@ import { Fragment, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { LOGO_PATHS, LOGO_VIEWBOX } from '../logoPaths'
 import { PROFILE } from '../data'
+import { TRACK, toggleSound, useSound } from '../sound'
+
+// Background music on / off: four bars that sway while it plays.
+export function SoundToggle({ className = '', showState = true }) {
+  const on = useSound()
+  return (
+    <button
+      type="button"
+      className={`snd ${on ? 'is-on' : ''} ${className}`}
+      data-sound-toggle
+      onClick={toggleSound}
+      aria-pressed={on}
+      title={`${TRACK.composer}, ${TRACK.title} (${TRACK.performer})`}
+    >
+      <span className="snd__bars" aria-hidden="true">
+        <i />
+        <i />
+        <i />
+        <i />
+      </span>
+      <span className={showState ? 'snd__state' : 'snd__sr'}>
+        <span className="snd__sr">Music </span>
+        {on ? 'On' : 'Off'}
+      </span>
+    </button>
+  )
+}
 
 export function Logo({ className, title = 'Harshil Barot' }) {
   return (
