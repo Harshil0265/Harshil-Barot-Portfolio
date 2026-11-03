@@ -65,11 +65,14 @@ Create the admin account for the inbox once with `node server/src/setup-admin.js
 
 Text, projects and links live in `client/src/site/data.js`. Each project has a
 slug, its copy, and `shots: [desktop, mobile]`, the number of gallery images in
-`client/public/work/<slug>/`. The brand generators are described in
+`client/public/work/<slug>/`. A new project's slug also goes in the
+`/work/:slug(...)` list in `vercel.json` (any other path is a 404) and in
+`client/public/sitemap.xml`. The brand generators are described in
 `client/scripts/brand/README.md`.
 
 ## Deploying
 
-`vercel.json` builds `client/` and serves it as a single-page app. The API is a
+`vercel.json` builds `client/` and serves the app only at `/`, `/work` and the
+project slugs; every other path gets Vercel's 404. The API is a
 separate Node service: host it (for example on Render or Railway) and route
 `/api` to it, otherwise the contact form cannot deliver in production.

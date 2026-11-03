@@ -1,10 +1,8 @@
 {
   "buildCommand": "cd client && npm install && npm run build",
   "outputDirectory": "client/dist",
-  "redirects": [
-    { "source": "/creative", "destination": "/", "permanent": true }
-  ],
   "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+    { "source": "/work", "destination": "/index.html" },
+    { "source": "/work/:slug(an-uniforms|ripper|pax-immigration|chaibugs|shabdsetu|akshar-nirmaan)", "destination": "/index.html" }
   ]
 }
