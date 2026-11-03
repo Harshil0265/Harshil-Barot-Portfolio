@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import './AdminPanel.css'
 import { 
   X, Mail, Phone, Calendar, Tag, MessageSquare, Search, Filter,
   Eye, Check, Reply, Archive, Trash2, LogOut, BarChart3, Loader,

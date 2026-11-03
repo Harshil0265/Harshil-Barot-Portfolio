@@ -30,11 +30,11 @@
     <meta name="twitter:url" content="https://harshilbarot.com/" />
     <meta name="twitter:title" content="Harshil Barot - Full-Stack Developer | MERN Stack Expert" />
     <meta name="twitter:description" content="Expert Full-Stack Developer specializing in MERN Stack. Creating scalable web applications and exceptional digital experiences." />
-    <meta name="twitter:image" content="https://harshilbarot.com/twitter-image.jpg" />
+    <meta name="twitter:image" content="https://harshilbarot.com/og-image.jpg" />
     <meta name="twitter:creator" content="@harshilbarot" />
     
     <!-- Additional SEO Meta Tags -->
-    <meta name="theme-color" content="#d97706" />
+    <meta name="theme-color" content="#0a0a0a" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="format-detection" content="telephone=no" />
@@ -51,9 +51,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Homemade+Apple&family=Josefin+Slab:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Sacramento&family=Viga&family=Manrope:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..600;1,400..600&family=Inter+Tight:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
+    <link rel="preload" as="image" href="/portrait-particles.webp" type="image/webp" />
+    <script>
+      // Paint the dark theme before the app mounts (the /creative page has its own theme).
+      var path = location.pathname
+      if (path === '/' || path === '/work' || path.indexOf('/work/') === 0) document.documentElement.classList.add('is-site')
+    </script>
     
     <!-- Structured Data (JSON-LD) for Rich Snippets -->
     <script type="application/ld+json">
@@ -101,11 +107,6 @@
       "author": {
         "@type": "Person",
         "name": "Harshil Barot"
-      },
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://harshilbarot.com/search?q={search_term_string}",
-        "query-input": "required name=search_term_string"
       }
     }
     </script>

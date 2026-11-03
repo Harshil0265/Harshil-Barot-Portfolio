@@ -20,8 +20,5 @@
     "fullstack"
   ],
   "author": "Harshil",
-  "license": "ISC",
-  "dependencies": {
-    "@imgly/background-removal": "^1.7.0"
-  }
+  "license": "ISC"
 }
