@@ -169,15 +169,14 @@ function AboutView({ onPick, onView }) {
         <div>
           <dt>Elsewhere</dt>
           <dd className="facts__links">
-            {SOCIALS.map((s) => (
+            {SOCIALS.map((s, i) => (
               <span key={s.label}>
+                {i > 0 && ', '}
                 <a href={s.href} target="_blank" rel="noreferrer">
                   {s.label}
                 </a>
-                ,{' '}
               </span>
             ))}
-            <Link to="/creative">Creative work</Link>
           </dd>
         </div>
         <div>

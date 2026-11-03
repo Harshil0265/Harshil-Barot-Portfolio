@@ -21,8 +21,7 @@ client/                  React + Vite front end (deployed to Vercel)
       CaseStudy.jsx      /work/:slug
       Work.jsx           /work
       components/        Header, Hero, Loader, Selected, Box, ContactForm, Footer…
-    CreativePortfolio.jsx  /creative (the creative-work portfolio)
-    components/          Admin inbox (Ctrl + Shift + A) and the /creative sections
+    components/          Admin inbox (Ctrl + Shift + A)
 server/                  Express + MongoDB API: contact form and admin auth
 ```
 
@@ -33,7 +32,6 @@ server/                  Express + MongoDB API: contact form and admin auth
 | `/` | Home: portrait, fly-through of the projects, Selected / About / Contact box |
 | `/work` | All projects |
 | `/work/:slug` | Case study |
-| `/creative` | Creative-work portfolio |
 
 ## Getting started
 

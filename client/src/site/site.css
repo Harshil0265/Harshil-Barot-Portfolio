@@ -1,8 +1,8 @@
 /* ==========================================================================
    Harshil Barot - portfolio
    Tokens, base, then one block per section in page order.
-   Global element rules are scoped to html.is-site / .site so the /creative
-   route is unaffected.
+   Global element rules are scoped to html.is-site / .site so overlays such
+   as the admin inbox keep their own styling.
    ========================================================================== */
 
 :root {

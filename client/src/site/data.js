@@ -12,11 +12,13 @@ export const PROFILE = {
     'A young entrepreneur helping startups and growing businesses launch faster and grow online, with websites, products and brands that win customers. Founder of',
 }
 
+// Every social link on the site reads from here; the JSON-LD `sameAs` list
+// and twitter:creator in index.html mirror these.
 export const SOCIALS = [
-  { label: 'GitHub', href: 'https://github.com/harshilbarot' },
-  { label: 'LinkedIn', href: 'https://linkedin.com/in/harshil-barot-211513353' },
-  { label: 'Instagram', href: 'https://instagram.com/harshilbarot' },
-  { label: 'X / Twitter', href: 'https://twitter.com/harshilbarot' },
+  { label: 'GitHub', href: 'https://github.com/Harshil0265' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/harshil-barot-an' },
+  { label: 'Instagram', href: 'https://www.instagram.com/harshill.barot/' },
+  { label: 'X / Twitter', href: 'https://x.com/01Harshilbarot' },
   { label: 'WhatsApp', href: 'https://wa.me/918866982848' },
 ]
 
