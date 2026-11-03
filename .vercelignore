@@ -1,0 +1,8 @@
+# Uploaded by `vercel` from this machine. Only the site is deployed (vercel.json
+# builds client/); the API runs elsewhere and its secrets must never be uploaded.
+server
+client/dist
+client/scripts
+*.md
+.env
+.env.*
