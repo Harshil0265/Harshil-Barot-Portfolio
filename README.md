@@ -81,6 +81,7 @@ Without `SMTP_USER` / `SMTP_PASS` the inbox still works, just without emails.
 | `npm run dev` | API and site together |
 | `npm run client` / `npm run server` | One of them |
 | `npm run build` | Production build of the site into `client/dist` |
+| `npm run deploy` | Deploy the site and API to Vercel production |
 | `npm run setup-admin --prefix server` | Create the admin, or reset its password |
 
 ## Editing content
@@ -106,7 +107,10 @@ remembers when someone turns it off, and pauses in background tabs.
 
 `vercel.json` installs and builds `client/` and `server/`, serves the site at
 `/`, `/work`, the project slugs and `/admin`, and runs the API as one function
-(`api/index.js`) for `/api/*`. Deploy with `vercel --prod`.
+(`api/index.js`) for `/api/*`. Deploy with `npm run deploy`, then check the result
+with `vercel ls`. It runs `vercel --prod --no-wait`: on networks that drop idle
+connections, waiting for the build can end in `read ECONNRESET` even though the
+deployment succeeds.
 
 Before the first deploy with the API, add these under Vercel → Project →
 Settings → Environment Variables (Production):
