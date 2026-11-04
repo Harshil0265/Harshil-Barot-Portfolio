@@ -239,7 +239,11 @@ html.lenis, html.lenis body { height: auto; }
 }
 .hdr__meta .lbl { color: rgba(255, 255, 255, 0.6); }
 .hdr__meta--nav { align-items: flex-end; text-align: right; }
-.hdr__meta--sound { align-items: flex-end; margin-left: clamp(28px, 3.2vw, 60px); }
+.hdr__meta--sound { align-items: stretch; margin-left: clamp(28px, 3.2vw, 60px); }
+/* Flush with the label: the bars start under the "S", On/Off ends under the colon. */
+.hdr__meta--sound .mask,
+.hdr__meta--sound .mask__in { display: block; }
+.hdr__meta--sound .snd { display: flex; width: 100%; justify-content: space-between; gap: 6px; }
 
 /* Sound toggle: four bars that sway while the music plays. */
 .snd { display: inline-flex; align-items: center; gap: 9px; }
@@ -262,7 +266,6 @@ html.lenis, html.lenis body { height: auto; }
   0% { transform: scaleY(0.22); }
   100% { transform: scaleY(1); }
 }
-.snd__state { min-width: 1.9em; text-align: left; }
 /* The header's phone-only button (the desktop one sits under "Sound:"). */
 .snd.hdr__sound-m { display: none; }
 .snd__sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
