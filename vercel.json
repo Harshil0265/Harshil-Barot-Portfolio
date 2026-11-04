@@ -29,6 +29,21 @@
       ],
       "destination": "https://harshilbarot.in/$1",
       "permanent": true
+    },
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/work.html",
+      "destination": "/work",
+      "permanent": true
+    },
+    {
+      "source": "/work/:slug(an-uniforms|ripper|pax-immigration|chaibugs|shabdsetu|akshar-nirmaan).html",
+      "destination": "/work/:slug",
+      "permanent": true
     }
   ],
   "rewrites": [
@@ -38,11 +53,11 @@
     },
     {
       "source": "/work",
-      "destination": "/index.html"
+      "destination": "/work.html"
     },
     {
       "source": "/work/:slug(an-uniforms|ripper|pax-immigration|chaibugs|shabdsetu|akshar-nirmaan)",
-      "destination": "/index.html"
+      "destination": "/work/:slug.html"
     },
     {
       "source": "/admin",

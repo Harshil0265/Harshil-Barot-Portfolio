@@ -90,10 +90,18 @@ Name, email, phone, socials and the contact form's choices live in
 `shared/site.json`; the site, the API and the emails all read it. Projects and
 copy live in `client/src/site/data.js`. Each project has a slug, its copy, and
 `shots: [desktop, mobile]`, the number of gallery images in
-`client/public/work/<slug>/`. A new project's slug also goes in the
-`/work/:slug(...)` list in `vercel.json` and in `client/public/sitemap.xml`.
-The `sameAs` links and `twitter:creator` in `client/index.html` mirror the
-socials. The brand generators are described in `client/scripts/brand/README.md`.
+`client/public/work/<slug>/`. A new project's slug also goes in both
+`/work/:slug(...)` lists in `vercel.json` and in `client/public/sitemap.xml`,
+and it needs a preview image in `client/public/og/`. The brand generators are
+described in `client/scripts/brand/README.md`.
+
+## SEO and link previews
+
+Titles, descriptions, Open Graph and X tags and structured data for every page
+are defined in `client/src/site/seo.js`. Link previews and crawlers read raw HTML
+without running JavaScript, so the build writes those tags into one HTML file per
+page (`dist/index.html`, `dist/work.html`, `dist/work/<slug>.html`) and
+`vercel.json` routes each address to its file.
 
 ## Music
 

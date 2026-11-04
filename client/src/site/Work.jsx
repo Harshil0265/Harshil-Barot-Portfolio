@@ -4,6 +4,7 @@ import SubPage from './SubPage'
 import { Arrow, SplitWords } from './components/ui'
 import { PROFILE, PROJECTS } from './data'
 import { gsap, prefersReducedMotion } from './motion'
+import { pageByPath } from './seo'
 
 const pad = (n) => String(n).padStart(2, '0')
 
@@ -11,11 +12,7 @@ function WorkList() {
   const root = useRef(null)
 
   useEffect(() => {
-    const before = document.title
-    document.title = `Work | ${PROFILE.name}`
-    return () => {
-      document.title = before
-    }
+    document.title = pageByPath('/work').title
   }, [])
 
   useLayoutEffect(() => {

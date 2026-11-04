@@ -5,9 +5,10 @@ import { LinkIcon, useCopyLink } from './components/Box'
 import { Arrow, SplitWords } from './components/ui'
 import { PROFILE, PROJECTS, TESTIMONIALS, projectBySlug } from './data'
 import { gsap, prefersReducedMotion } from './motion'
+import { pageByPath } from './seo'
 
 const pad = (n) => String(n).padStart(2, '0')
-const host = (url) => new URL(url).host.replace(/^www\./, '')
+const host =(url) => new URL(url).host.replace(/^www\./, '')
 
 // A desktop capture in a slim browser frame.
 function Browser({ src, url, alt, eager }) {
@@ -42,12 +43,8 @@ function Content({ project }) {
   const tail = rest.slice(pair.length)
 
   useEffect(() => {
-    const before = document.title
-    document.title = `${title}, ${tagline} | ${PROFILE.name}`
-    return () => {
-      document.title = before
-    }
-  }, [title, tagline])
+    document.title = pageByPath(`/work/${slug}`).title
+  }, [slug])
 
   useLayoutEffect(() => {
     if (prefersReducedMotion()) return

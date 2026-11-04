@@ -9,6 +9,7 @@ import Selected from './site/components/Selected'
 import { PROJECTS, SOCIALS } from './site/data'
 import { ScrollTrigger, getLenis, initSmoothScroll, loadImage, lockScroll, scrollToTarget } from './site/motion'
 import { cardProgress } from './site/Scene'
+import { pageByPath } from './site/seo'
 import './site/site.css'
 
 // Survives route changes (not reloads): the loader plays once per visit, and
@@ -50,6 +51,7 @@ export default function App() {
   }, [])
 
   useEffect(() => {
+    document.title = pageByPath('/').title
     document.documentElement.classList.add('is-site')
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual'
     window.scrollTo(0, 0)
