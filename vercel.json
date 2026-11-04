@@ -3,16 +3,70 @@
   "buildCommand": "npm run build --prefix client",
   "outputDirectory": "client/dist",
   "functions": {
-    "api/index.js": { "maxDuration": 30 }
+    "api/index.js": {
+      "maxDuration": 30
+    }
   },
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.harshilbarot.in"
+        }
+      ],
+      "destination": "https://harshilbarot.in/$1",
+      "permanent": true
+    },
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "harshil-barot.vercel.app"
+        }
+      ],
+      "destination": "https://harshilbarot.in/$1",
+      "permanent": true
+    }
+  ],
   "rewrites": [
-    { "source": "/api/:path*", "destination": "/api" },
-    { "source": "/work", "destination": "/index.html" },
-    { "source": "/work/:slug(an-uniforms|ripper|pax-immigration|chaibugs|shabdsetu|akshar-nirmaan)", "destination": "/index.html" },
-    { "source": "/admin", "destination": "/index.html" }
+    {
+      "source": "/api/:path*",
+      "destination": "/api"
+    },
+    {
+      "source": "/work",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/work/:slug(an-uniforms|ripper|pax-immigration|chaibugs|shabdsetu|akshar-nirmaan)",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/admin",
+      "destination": "/index.html"
+    }
   ],
   "headers": [
-    { "source": "/admin", "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }] },
-    { "source": "/audio/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=2592000" }] }
+    {
+      "source": "/admin",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    },
+    {
+      "source": "/audio/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=2592000"
+        }
+      ]
+    }
   ]
 }

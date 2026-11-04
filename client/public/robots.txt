@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://harshil-barot.vercel.app/sitemap.xml
+Sitemap: https://harshilbarot.in/sitemap.xml
